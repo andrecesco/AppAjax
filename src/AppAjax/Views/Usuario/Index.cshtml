@@ -1,0 +1,39 @@
+﻿@model AppAjax.ViewModels.UsuarioConsultar
+@*
+    DICA: Coloque o mesmo nome da pasta o nome do Controller.
+    Assim ele encontra mais fácil as suas VIEWS
+*@
+@{
+
+}
+
+@Html.ActionLink("Cadastar novo usuário", "Cadastrar", "Usuario")
+
+<form asp-controller="Usuario" asp-action="Filtrar" data-ajax="true" data-ajax-method="POST" 
+      data-ajax-update="#divConsultar">
+    <table class="table">
+        <tr>
+            <td>
+                @Html.LabelFor(model => model.NomeCompleto, new { @class = "control-label" })
+                @Html.TextBoxFor(model => model.NomeCompleto, new { @class = "form-control" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(model => model.Email, new { @class = "control-label" })
+                @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <!-- Através desse botão chama a action e o controller declarado no form -->
+                <button type="submit" class="btn btn-primary">Filtrar</button> 
+            </td>
+        </tr>
+    </table>
+</form>
+
+
+<div id="divConsultar">
+    @Html.Partial("~/Views/Usuario/_Consultar.cshtml")
+</div>

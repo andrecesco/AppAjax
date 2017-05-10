@@ -1,0 +1,56 @@
+﻿@*
+    Layout null para não carregar o mesmo layout da index que é como se fosse a master page a casca do site.
+    Normalmente uso ViewData["DATASOURCE"] para carregar o GRID, mas aí depende da empresa
+*@
+@{
+    Layout = null;
+
+    var listaResultado = ViewData["DataSource"] as List<AppAjax.ViewModels.UsuarioConsultar>;
+}
+
+
+<h1>LISTA DE RESULTADOS</h1>
+@if (listaResultado != null && listaResultado.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Id Usuário
+                </th>
+                <th>
+                    Nome Completo
+                </th>
+                <th>
+                    E-mail
+                </th>
+                <th>
+                    Senha
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in listaResultado)
+            {
+                <tr>
+                    <td>
+                        @item.IdUsuario
+                    </td>
+                    <td>
+                        @item.NomeCompleto
+                    </td>
+                    <td>
+                        @item.Email
+                    </td>
+                    <td>
+                        @item.Senha
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h2>Nenhum resultado encontrado!</h2>
+}
